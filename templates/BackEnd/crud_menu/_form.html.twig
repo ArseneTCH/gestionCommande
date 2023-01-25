@@ -1,4 +1,81 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+ 
+
+     <div class="col-sm-8 ">
+
+			{% for message in app.flashes('error_message') %}
+            <div class="alert alert-danger col-sm-5 offset-sm-7 " role="alert">
+            <strong class=''>{{message }}</strong>
+        	</div>
+        	{% endfor %} 
+
+						<!-- Row -->
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="">
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body pa-0">
+											<div class="col-sm-12 col-xs-12">
+												
+												<div class="form-wrap  ">
+													 
+													{{ form_start(form) }}
+													<form action="{{path('menu_save')}}" method="post">
+
+														<div class="form-body overflow-hide">
+														 	
+															 
+															 <div class="form-group">
+																<label class="control-label mb-10" for="exampleInputuname_1">nom</label>
+																<div class="input-group">
+																	<div class="input-group-addon">
+																		<i class="icon-user"></i>
+																	</div>
+																	{{ form_widget(form.nom, {'attr':{'class':'form_control'}}) }} 
+
+																</div>
+															</div>
+
+
+
+															
+
+															<div class="form-group">
+																<label class="control-label mb-10" for="exampleInputEmail_1">prix</label>
+																<div class="input-group">
+																	<div class="input-group-addon">
+																		<i class="fa fa-money"></i>
+																	</div>
+																
+																	{{ form_widget(form.prix, {'attr':{'class':'form_control'}}) }}
+																</div>
+															</div>
+
+                                                            <div class="form-group">
+																<div class="fileupload btn btn-success ">
+                                                                	{{ form_widget(form.image) }}
+																</div>
+															</div>
+
+
+															<button type="submit" class="btn btn-success waves-effect" name='btn_save' data-dismiss="modal" role="button">
+                                                             {{ button_label|default('save') }}</button>
+                                                           
+
+                                                            
+														</div>
+														
+													</form>
+													{{ form_end(form) }}
+													 
+												</div>
+
+											</div>
+
+
+
+
+
+
+
 {{ form_end(form) }}

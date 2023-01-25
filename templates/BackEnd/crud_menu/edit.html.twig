@@ -1,13 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.back.html.twig' %}
 
 {% block title %}Edit Menu{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Edit Menu</h1>
 
-    {{ include('menu/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('BackEnd/crud_menu/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_menu_index') }}">back to list</a>
+  
 
-    {{ include('menu/_delete_form.html.twig') }}
+   
+    <div class="row">
+            <div class="col-sm-2">
+                <a href="{{ path('menu_management') }}">
+                
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                      <span class="badge badge-primary"></span>
+               </a>
+            </div>
+
+            <div class="col-sm-4 ml-3 mt-5">
+               {#  {{ include('crud_menu/_delete_form.html.twig') }} #}
+               
+            </div>
+    </div> 
+    {% if app.request.attributes.get('_route') == 'menu_edit' %}
+                    <h2>Images</h2>
+                        {% for image in menuSelect.images %}
+                            <div class="row col-sm-3">
+                            <a href="{{ path('menu_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">
+                                <div >
+                                    <img src="{{ asset('/uploads/' ~ image.nom) }}" alt="Image" width="150">
+                                                                        
+                                </div>
+                            </a>
+                             </div>
+                        {% endfor %} 
+				{% endif %}  
 {% endblock %}

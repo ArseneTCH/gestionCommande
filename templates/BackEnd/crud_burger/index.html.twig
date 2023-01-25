@@ -2,7 +2,7 @@
 
 {% block title %}Burger index{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>Burger index</h1>
 
     <table class="table">
@@ -21,8 +21,8 @@
                 <td>{{ burger.nom }}</td>
                 <td>{{ burger.prix }}</td>
                 <td>
-                    <a href="{{ path('app_burger_show', {'id': burger.id}) }}">show</a>
-                    <a href="{{ path('app_burger_edit', {'id': burger.id}) }}">edit</a>
+                    <a href="{{ path('crud_burger_show', {'id': burger.id}) }}">show</a>
+                    <a href="{{ path('crud_burger_edit', {'id': burger.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_burger_new') }}">Create new</a>
+    <a href="{{ path('crud_burger_new') }}">Create new</a>
 {% endblock %}
